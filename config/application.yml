@@ -1,0 +1,95 @@
+# Application settings available as Rails.application.config.settings
+#
+# All values in this file are namespaced under Rails.application.config.settings
+# and will not conflict with other configuration values in Rails.application.config.
+# Settings are manually applied to the correct config var as needed in specific initializers.
+# e.g. config/initializers/devise.rb
+
+common: &common
+  # Downcased and trimmed app name for namespaces.
+  # Safest to start with a letter rather than a number.
+  # See locales/en.yml for setting your app's user facing brand name.
+  app_name: 'MMOStarterKitLobby'
+
+  social:
+    facebook: 'https://www.facebook.com/simple10'
+    twitter: 'https://twitter.com/joejohnston'
+    google_plus: 'https://plus.google.com/+JoeJohnstonSF'
+    linkedin: 'http://www.linkedin.com/in/startupjoe'
+
+  contact:
+    email: 'public@seadragonunity.com'
+    phone: '+971-55-3899120'
+
+  session:
+    key: '_star_session'
+    expire_after: <%= 30.days %>
+
+  rack:
+    # Timeout request after 20 seconds
+    timeout: 20
+
+  mail:
+    layout: 'emails/email'
+    from: 'public@seadragonunity.com'
+
+
+# Default ENV vars.
+# Set to development values for convenience and override in production by setting ENV on the server.
+# As a best practice, do not put production values in this file for security reasons.
+default_env: &default_env
+  # From address to use when sending email
+  MAIL_HOST: 'localhost:3000'
+  GODADDY_USERNAME: 'public@seadragonunity.com'
+  GODADDY_PASSWORD: 'ButBri77'
+  GODADDY_DOMAIN: 'seadragonunity.com'
+
+  # Host used to determine direct requests vs CDN.
+  # See RobotsController.
+  CANONICAL_HOST: 'rails4-starterkit.herokuapp.com'
+
+  AUTH_FACEBOOK_KEY: '201539556694091'
+  AUTH_FACEBOOK_SECRET: '80ae1dc93961b7f9a79265af0eeca698'
+  AUTH_TWITTER_KEY: 'hbcu8JvAB1FftWw7c3oog'
+  AUTH_TWITTER_SECRET: 'uTspycZ4T7QAeA9QLGBb1zoLrR6K7ChBPdYt8F7nZc'
+
+  # Devise password encryption keys.
+  # Channging the keys will invalidate user passwords,
+  # forcing users to use the forgot password feature.
+  # TODO: make new keys with `rake secret`
+  DEVISE_SECRET_KEY: 'bf33f4bf9e0951d0926a464eb270a233dc79dfdcb443d3f5fec3539166dace2229219646594a35027aad958a2ebed74317f2d56beb857f620b16f09dbed4c9e0'
+  DEVISE_PEPPER: 'a4bf66b9a87fd19b4821a9ff21eb3fafd5d12e475931044b365dad78d4d2b5077223504d0ba4c00327ff666bc6d6c3f5f55f441510660b589b06207ea126042b'
+
+  # Signed cookie encryption key.
+  # TODO: make new key with `rake secret`
+  SECRET_KEY_BASE: '71903f9b14e24595fa115fe17d2a3ef09718280e47ac9f21f0543cb424d9a578e63557e7f0a3387786aaf56513c494a8a22f22e2041b81fc5304b71be41be3c0'
+
+  # Redis server used by Sidekiq, cache, etc.
+  REDIS_URL: 'redis://localhost:6379/0'
+
+  # Airbrake/Errbit configuration
+  AIRBRAKE_API_KEY: ''
+  AIRBRAKE_HOST: ''
+
+
+development:
+  <<: *common
+  env:
+    <<: *default_env
+    ALLOW_EMAIL_PREVIEW: true
+
+test:
+  <<: *common
+  env:
+    <<: *default_env
+
+staging:
+  <<: *common
+  env:
+    <<: *default_env
+
+production:
+  <<: *common
+  env:
+    # Set dummy key so rake assets:precompile succeeds
+    DEVISE_SECRET_KEY: ''
