@@ -24,3 +24,5 @@
 
 # Ignore RubyMine project folder
 .idea
+
+*.lock
