@@ -68,6 +68,9 @@ gem 'omniauth-twitter'
 # Admin
 gem 'rails_admin'
 
+# MmoStarterKit
+gem 'mmostarterkit'
+
 # Workers
 gem 'sidekiq'
 gem 'devise-async'
