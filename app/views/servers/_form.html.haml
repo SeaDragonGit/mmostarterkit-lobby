@@ -1,0 +1,12 @@
+= simple_form_for(@server) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :uuid
+    = f.input :addr
+    = f.input :port
+    = f.input :status
+    = f.input :intend
+
+  .form-actions
+    = f.button :submit

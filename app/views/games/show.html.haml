@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Uuid:
+  = @game.uuid
+%p
+  %b Server uuid:
+  = @game.server_uuid
+%p
+  %b Server addr:
+  = @game.server_addr
+%p
+  %b Server port:
+  = @game.server_port
+%p
+  %b Started at:
+  = @game.started_at
+%p
+  %b Over at:
+  = @game.over_at
+
+= link_to 'Edit', edit_game_path(@game)
+\|
+= link_to 'Back', games_path

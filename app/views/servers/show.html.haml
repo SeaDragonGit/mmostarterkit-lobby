@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Uuid:
+  = @server.uuid
+%p
+  %b Addr:
+  = @server.addr
+%p
+  %b Port:
+  = @server.port
+%p
+  %b Status:
+  = @server.status
+%p
+  %b Intend:
+  = @server.intend
+
+= link_to 'Edit', edit_server_path(@server)
+\|
+= link_to 'Back', servers_path

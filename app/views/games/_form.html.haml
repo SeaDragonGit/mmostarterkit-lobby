@@ -1,0 +1,13 @@
+= simple_form_for(@game) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :uuid
+    = f.input :server_uuid
+    = f.input :server_addr
+    = f.input :server_port
+    = f.input :started_at
+    = f.input :over_at
+
+  .form-actions
+    = f.button :submit
