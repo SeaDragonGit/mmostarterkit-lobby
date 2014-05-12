@@ -61,10 +61,4 @@ class User < ActiveRecord::Base
     # UserMailer.delay_for(5.days).find_more_friends_email(self.id)
   end
 
-  # bundles
-  has_many :bundles
-  has_many :instances, through: :bundles
-
-
-
 end

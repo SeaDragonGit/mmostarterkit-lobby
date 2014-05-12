@@ -9,6 +9,7 @@
     %ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
         %li= link_to I18n.t('account.link'), user_path(current_user)
+        %li= link_to I18n.t('games.link'), games_path
   .collapse.navbar-collapse
     %ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
