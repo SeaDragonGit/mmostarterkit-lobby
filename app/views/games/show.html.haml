@@ -1,24 +1,12 @@
+
+- content_for(:title, 'MMO Starter Kit Demo Web Application')
+- content_for(:head) do
+  = stylesheet_link_tag 'game/unity_player', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'game/unity_player', 'data-turbolinks-track' => true
+
 %p#notice= notice
 
-%p
-  %b Uuid:
-  = @game.uuid
-%p
-  %b Server uuid:
-  = @game.server_uuid
-%p
-  %b Server addr:
-  = @game.server_addr
-%p
-  %b Server port:
-  = @game.server_port
-%p
-  %b Started at:
-  = @game.started_at
-%p
-  %b Over at:
-  = @game.over_at
+%h1 MMO Starter Kit Demo
+= unity_player
 
-= link_to 'Edit', edit_game_path(@game)
-\|
 = link_to 'Back', games_path

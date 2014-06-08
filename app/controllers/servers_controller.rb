@@ -1,5 +1,5 @@
-class ServersController < ApplicationController
-  before_action :set_server, only: [:show, :edit, :update, :destroy]
+class ServersController < ActionController::Base
+  before_action :set_server, only: [:show, :update, :destroy]
 
   # GET /servers
   def index
@@ -8,15 +8,6 @@ class ServersController < ApplicationController
 
   # GET /servers/1
   def show
-  end
-
-  # GET /servers/new
-  def new
-    @server = Server.new
-  end
-
-  # GET /servers/1/edit
-  def edit
   end
 
   # POST /servers
@@ -53,6 +44,6 @@ class ServersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def server_params
-      params.require(:server).permit(:uuid, :addr, :port, :status, :intend)
+      params.require(:server).permit(:uuid, :addr, :port, :status)
     end
 end

@@ -1,0 +1,17 @@
+%html
+  %head
+    :javascript
+      window.fbAppId = '#{j ENV['FB_APP_ID']}';
+      window.fbUserId = '#{current_fb_user.uid rescue ''}';
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %title= yield(:title)
+    = yield(:head)
+    = stylesheet_link_tag "game/theme", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "game/game", "data-turbolinks-track" => false
+    = csrf_meta_tags
+    = '<!--[if lt IE 9]>'.html_safe
+    = '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>'.html_safe
+    = '<![endif]-->'.html_safe
+
+  %body
+    = yield

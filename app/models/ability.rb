@@ -9,6 +9,7 @@ class Ability
   def initialize(user = User.new)
     can :manage, User, id: user.id
     can :manage, Authentication, user_id: user.id
+    can :manage, Game
 
     if user.is_admin? && defined?(RailsAdmin)
       # Allow everything

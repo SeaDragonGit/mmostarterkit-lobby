@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  layout 'game', only: [:index]
 
   # GET /games
   def index
@@ -12,7 +14,7 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+
   end
 
   # GET /games/1/edit
