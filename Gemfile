@@ -82,6 +82,7 @@ gem 'settingslogic'
 gem 'usagewatch'
 gem 'rubyzip'
 gem 'god'
+gem 'redis'
 
 group :development do
   # Docs
