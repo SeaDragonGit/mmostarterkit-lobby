@@ -1,7 +1,7 @@
 module UnityPlayerHelper
 
-def unity_player
-  out = '<div class="content">
+  def unity_player
+    '<div class="content">
       <div id="unityPlayer">
 				<div class="missing">
 					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
@@ -15,6 +15,6 @@ def unity_player
 				</div>
 			</div>
     </div>'.html_safe
-end
+  end
 
 end
