@@ -1,5 +1,4 @@
 class ServersController < ActionController::Base
-  before_action :set_server, only: [:show, :update, :destroy]
 
   # GET /servers
   def index
@@ -10,38 +9,13 @@ class ServersController < ActionController::Base
   def show
   end
 
-  # POST /servers
-  def create
-    @server = Server.new(server_params)
+  # GET/PUT /servers/hartbeat
+  def hartbeat
 
-    if @server.save
-      redirect_to @server, notice: 'Server was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /servers/1
-  def update
-    if @server.update(server_params)
-      redirect_to @server, notice: 'Server was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /servers/1
-  def destroy
-    @server.destroy
-    redirect_to servers_url, notice: 'Server was successfully destroyed.'
+    render :json=>{:succeed=>true}
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_server
-      @server = Server.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def server_params
       params.require(:server).permit(:uuid, :addr, :port, :status)
