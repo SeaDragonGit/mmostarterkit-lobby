@@ -14,7 +14,7 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-
+    $redis.setex("search_#{current_user.id}", 120, {user_id:current_user.id, session:nil}.to_json)
   end
 
   # GET /games/1/edit

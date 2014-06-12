@@ -6,22 +6,26 @@
     %th Addr
     %th Port
     %th Status
-    %th Intend
-    %th
-    %th
     %th
 
   - @servers.each do |server|
     %tr
-      %td= server.uuid
-      %td= server.addr
-      %td= server.port
-      %td= server.status
-      %td= server.intend
-      %td= link_to 'Show', server
-      %td= link_to 'Edit', edit_server_path(server)
-      %td= link_to 'Destroy', server, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= server['uuid']
+      %td= server['addr']
+      %td= server['port']
+      %td= server['status']
 
 %br
 
-= link_to 'New Server', new_server_path
+%table
+  %tr
+    %th User
+    %th Session
+
+  - @searches.each do |search|
+    %tr
+      %td= search['user_id']
+      %td= search['session']
+
+%br
+

@@ -83,6 +83,7 @@ gem 'usagewatch'
 gem 'rubyzip'
 gem 'god'
 gem 'redis'
+gem 'json'
 
 group :development do
   # Docs
