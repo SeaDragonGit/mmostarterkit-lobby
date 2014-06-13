@@ -1,49 +1,35 @@
 class ServersController < ActionController::Base
-  before_action :set_server, only: [:show, :update, :destroy]
+
+  before_action :set_servers, only: [:index]
+  before_action :set_searches, only: [:index]
 
   # GET /servers
   def index
-    @servers = Server.all
+
   end
 
   # GET /servers/1
   def show
   end
 
-  # POST /servers
-  def create
-    @server = Server.new(server_params)
-
-    if @server.save
-      redirect_to @server, notice: 'Server was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /servers/1
-  def update
-    if @server.update(server_params)
-      redirect_to @server, notice: 'Server was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /servers/1
-  def destroy
-    @server.destroy
-    redirect_to servers_url, notice: 'Server was successfully destroyed.'
+  # GET/PUT /servers/hartbeat
+  def hartbeat
+    $redis.setex("server_#{server_params[:uuid]}", 10, server_params.to_json)
+    render :json=>{succeed:true}
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_server
-      @server = Server.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def server_params
-      params.require(:server).permit(:uuid, :addr, :port, :status)
+      params.permit(:uuid, :addr, :port, :status)
     end
+
+    def set_servers
+      @servers = $redis.keys('server_*').map { |k| JSON.parse($redis.get(k)) }
+    end
+
+    def set_searches
+      @searches = $redis.keys('search_*').map { |k| JSON.parse($redis.get(k)) }
+    end
+
 end

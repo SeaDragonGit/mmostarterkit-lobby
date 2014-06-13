@@ -1,8 +1,6 @@
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
 
-  resources :servers
-
   resources :games
 
   if defined? Sidekiq
@@ -48,6 +46,9 @@ Rails.application.routes.draw do
   get '/p/email' => 'pages#email' if ENV['ALLOW_EMAIL_PREVIEW'].present?
 
   get 'robots.:format' => 'robots#index'
+
+  get '/servers' => 'servers#index'
+  get '/servers/hartbeat' => 'servers#hartbeat'
 
   root 'pages#home'
 end
