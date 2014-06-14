@@ -18,6 +18,7 @@
     .container
       .errors__container
         = render 'layouts/messages'
+      #matchmacking_status
       = yield
       %footer.page__footer
         - if content_for? :footer

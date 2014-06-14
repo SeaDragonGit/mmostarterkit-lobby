@@ -17,6 +17,20 @@ class GamesController < ApplicationController
     $redis.setex("search_#{current_user.id}", 120, {user_id:current_user.id, session:nil}.to_json)
   end
 
+
+  def matchmaking_status
+    render json:{active:false}
+  end
+
+  def start_matchmaking
+
+  end
+
+  def stop_matchmaking
+
+  end
+
+
   # GET /games/1/edit
   def edit
   end

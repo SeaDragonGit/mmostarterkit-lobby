@@ -1,7 +1,6 @@
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
 
-  resources :games
 
   if defined? Sidekiq
     require 'sidekiq/web'
@@ -49,6 +48,13 @@ Rails.application.routes.draw do
 
   get '/servers' => 'servers#index'
   get '/servers/hartbeat' => 'servers#hartbeat'
+
+  # search
+  get '/games/matchmaking_status' => 'games#matchmaking_status'
+  get '/games/start_matchmaking' => 'games#start_matchmaking'
+  get '/games/stop_matchmaking' => 'games#stop_matchmaking'
+
+  resources :games
 
   root 'pages#home'
 end
