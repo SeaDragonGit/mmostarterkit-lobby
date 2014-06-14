@@ -4,16 +4,14 @@
 
 $(document).ready ->
 
-  matchmakingStatus ->
+  setInterval( ->
     $.ajax
       url: "http://localhost:3001/games/matchmaking_status"
       dataType: 'html'
       cache: false
       success: (data) ->
-        $('matchmacking_status').html(data)
+        $('#matchmacking_status').html(data)
 
       error: (XMLHttpRequest, testStatus, errorThrown) ->
         alert('Error!')
-
-
-  setInterval("matchmakingStatus()", 1000);
+  ,3000)
