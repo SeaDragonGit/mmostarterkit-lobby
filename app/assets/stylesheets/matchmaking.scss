@@ -1,0 +1,17 @@
+.matchmaking_bar {
+  @extend .row;
+  max-width: 420px;
+  margin: 0 auto;
+
+  #matchmacking_cancel_btn {
+    float: left;
+    display: inline-block;
+  }
+
+  #matchmacking_status{
+    float: right;
+    display: inline-block;
+  }
+
+}
+

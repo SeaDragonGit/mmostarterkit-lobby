@@ -51,8 +51,8 @@ Rails.application.routes.draw do
 
   # search
   get '/games/matchmaking_status' => 'games#matchmaking_status'
-  get '/games/start_matchmaking' => 'games#start_matchmaking'
-  get '/games/stop_matchmaking' => 'games#stop_matchmaking'
+  post '/games/start_matchmaking' => 'games#start_matchmaking'
+  post '/games/stop_matchmaking' => 'games#stop_matchmaking'
 
   resources :games
 

@@ -10,8 +10,14 @@ $(document).ready ->
       dataType: 'html'
       cache: false
       success: (data) ->
-        $('#matchmacking_status').html(data)
+        reply = JSON.parse(data)
+        if(reply.active)
+          $('#matchmacking_status').show()
+          $('#matchmacking_status').html(reply.status)
+        else
+          $('#matchmacking_status').hide()
 
       error: (XMLHttpRequest, testStatus, errorThrown) ->
-        alert('Error!')
+        $('#matchmacking_status').show()
+        $('#matchmacking_status').html('connection problem.')
   ,3000)

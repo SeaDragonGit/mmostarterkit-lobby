@@ -19,15 +19,15 @@ class GamesController < ApplicationController
 
 
   def matchmaking_status
-    render json:{active:false}
+    render json:{active:true,status:'wait...'}
   end
 
   def start_matchmaking
-
+    render nothing: true
   end
 
   def stop_matchmaking
-
+    render nothing: true
   end
 
 
