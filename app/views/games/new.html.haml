@@ -4,3 +4,4 @@
 
 = button_to 'Stop', games_path, remote: true, class: "btn btn-primary", :form => {:"data-loading-text" => "wait ..."}
 
+= button_to 'Do Search', { controller: '/games', action: 'start_matchmaking' }, id: 'matchmaking_start_btn', class: 'btn', remote: true, form: { 'data-type' => 'json' }
