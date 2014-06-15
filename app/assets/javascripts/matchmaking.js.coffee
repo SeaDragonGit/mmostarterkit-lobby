@@ -4,20 +4,22 @@
 
 $(document).ready ->
 
-  setInterval( ->
-    $.ajax
-      url: "http://localhost:3001/games/matchmaking_status"
-      dataType: 'html'
-      cache: false
-      success: (data) ->
-        reply = JSON.parse(data)
-        if(reply.active)
-          $('#matchmacking_status').show()
-          $('#matchmacking_status').html(reply.status)
-        else
-          $('#matchmacking_status').hide()
+  unless(document.matchmaking_watcher)
 
-      error: (XMLHttpRequest, testStatus, errorThrown) ->
-        $('#matchmacking_status').show()
-        $('#matchmacking_status').html('connection problem.')
-  ,3000)
+    document.matchmaking_watcher = setInterval( ->
+      $.ajax
+        url: "http://localhost:3001/games/matchmaking_status"
+        dataType: 'html'
+        cache: false
+        success: (data) ->
+          reply = JSON.parse(data)
+          if(reply.active)
+            $('#matchmaking_bar').show()
+            $('#matchmaking_status').html(reply.status)
+          else
+            $('#matchmaking_bar').hide()
+
+        error: (XMLHttpRequest, testStatus, errorThrown) ->
+          $('#matchmaking_bar').show()
+          $('#matchmaking_status').html('connection problem.')
+    ,3000)

@@ -18,9 +18,9 @@
     .container
       .errors__container
         = render 'layouts/messages'
-      .matchmacking_bar
-        #matchmacking_status
-        = button_to 'Cancel', { controller: '/games', action: 'stop_matchmaking' }, id: 'matchmacking_cancel_btn', class: 'btn', remote: true, form: { 'data-type' => 'json' }
+      #matchmaking_bar
+        #matchmaking_status
+        = button_to 'Cancel', { controller: '/games', action: 'stop_matchmaking' }, id: 'matchmaking_cancel_btn', class: 'btn', remote: true, form: { 'data-type' => 'json' }
       = yield
       %footer.page__footer
         - if content_for? :footer
