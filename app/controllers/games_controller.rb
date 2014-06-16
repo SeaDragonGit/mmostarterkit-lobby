@@ -19,7 +19,18 @@ class GamesController < ApplicationController
 
 
   def matchmaking_status
-    render json:{active:true,status:'wait...'}
+    search_json = $redis.get("search_#{current_user.id}")
+    if search_json.nil?
+      render json:{active:false,searching:false,status:''}
+    else
+      $redis.expire("search_#{current_user.id}",120)
+      search = JSON.parse(search_json)
+      if search['session'].nil?
+        render json:{active:true,searching:true,status:'searching...'}
+      else
+        render json:{active:true,searching:false,session:search['session'],status:'game '}
+      end
+    end
   end
 
   def start_matchmaking
@@ -28,6 +39,7 @@ class GamesController < ApplicationController
   end
 
   def stop_matchmaking
+    $redis.del("search_#{current_user.id}")
     render nothing: true
   end
 
